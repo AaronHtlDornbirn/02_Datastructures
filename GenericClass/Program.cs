@@ -4,16 +4,13 @@ class Programm
 {
     static void Main(string[] args)
     {
-        GenericList<int> numberone = new GenericList<int>();
-        numberone.Add(1);
-        Console.WriteLine(numberone.GetList(0));
+        GenericList<int> list1 = new GenericList<int>();
+        list1.Add(1);
 
-        GenericList<string> numbertwo = new GenericList<string>();
-        numbertwo.Add("Hello");
-        Console.WriteLine(numbertwo.GetList(0));
+        Console.WriteLine(list1.GetList(0));
 
-        GenericList<string> numberthree = new GenericList<string>();
-        numberthree.Add("Aaron");
-        Console.WriteLine(numberthree.GetList(0));
+        GenericList<string> list2 = new GenericList<string>();
+        list2.Add("hellou");
+        Console.WriteLine(list2.GetList(0));
     }
 }

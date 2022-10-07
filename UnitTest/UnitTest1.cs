@@ -6,10 +6,12 @@ namespace UnitTest
     public class Tests
     {
         [SetUp]
-        public void Setup() {}
+        public void Setup()
+        {
+        }
 
         [Test]
-        public void TestStack()
+        public void Test1()
         {
             CustomStack<int> stack = new CustomStack<int>();
             Assert.AreEqual(stack.size(), 0);
@@ -19,13 +21,13 @@ namespace UnitTest
         }
 
         [Test]
-        public void TestLinkedList()
+        public void TestLinkedList_AddItems_ReturnsCorrectList()
         {
-            SingleLinkedList.SingleLinkedList linkedlist= new SingleLinkedList.SingleLinkedList();
-            linkedlist.InsertFirst(1);
-            linkedlist.InsertFirst(2);
-            linkedlist.InsertFirst(3);
-            Assert.AreEqual(linkedlist.Last(), 1);
+            SingleLinkedList.SingleLinkedList list= new SingleLinkedList.SingleLinkedList();
+            list.InsertFirst(1);
+            list.InsertFirst(2);
+            list.InsertFirst(3);
+            Assert.AreEqual(list.Last(), 1);
         }
     }
 }
