@@ -7,15 +7,17 @@ namespace SingleLinkedListTest
     {
         [SetUp]
         public void Setup() {}
-
+        
         [Test]
         public void TestLinkedList_AddItems_ReturnsCorrectList()
         {
             SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst(1);
-            list.InsertFirst(2);
-            list.InsertFirst(3);
-            Assert.AreEqual(list.Last(), 1);
+            list.InsertFirst("first");
+            list.InsertLast("last");
+            list.InsertAfter("mitte",2);
+            Assert.AreEqual(list.Count(), 4);
+            list.DeleteNode(2);
+            Assert.AreEqual(list.Count(), 3);
         }
     }
 }

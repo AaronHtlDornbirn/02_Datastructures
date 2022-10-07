@@ -14,12 +14,13 @@ class Programm
         singleLinkedList.InsertLast(1);
         singleLinkedList.printAllNodes();
 
-        singleLinkedList.DeleteAt(2);
+        singleLinkedList.InsertAfter(3, 6);
         singleLinkedList.printAllNodes();
 
-        singleLinkedList.InsertAt(2, 2);
+        singleLinkedList.GetNode(4);
         singleLinkedList.printAllNodes();
 
-        Console.Write(singleLinkedList.First());
+        singleLinkedList.DeleteNode(5);
+        singleLinkedList.printAllNodes();
     }
 }
