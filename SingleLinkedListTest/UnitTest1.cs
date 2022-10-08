@@ -90,15 +90,19 @@ namespace SingleLinkedListTest
 
 
         [Test]
-        public void IsertLast_At_OnlyThisElementInList()
+        public void DeleteNode_EmptyList_DoesNotCrash()
         {
             SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst("first");
-            var node = list.GetNode("first");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            Assert.AreEqual("first", node.data);
-            Assert.AreEqual(node.next, null);
+            list.DeleteNode(1);
+        }
+
+        [Test]
+        public void DeleteNode_NoEmptyList_DeleteElement()
+        {
+            SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
+            list.InsertLast("first");
+            list.InsertLast("second");
+            list.DeleteNode(1);
         }
 
         [Test]
