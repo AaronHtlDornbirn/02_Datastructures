@@ -10,6 +10,18 @@ namespace SingleLinkedList
     {
         public Node head;
         public int index = 0;
+        
+        public void printAllNodes()
+        {
+            Node current = head;
+            String printString = "";
+            while (current != null)
+            {
+                printString += current.data + "\n";
+                current = current.next;
+            }
+            Console.WriteLine(printString);
+        }
 
         public void InsertFirst(Object _value)
         {
@@ -25,18 +37,6 @@ namespace SingleLinkedList
                 head = node;
                 index++;
             }
-        }
-
-        public void printAllNodes()
-        {
-            Node current = head;
-            String printString = "";
-            while (current != null)
-            {
-                printString += current.data + "\n";
-                current = current.next;
-            }
-            Console.WriteLine(printString);
         }
 
         public void InsertLast(Object _value)
@@ -61,9 +61,31 @@ namespace SingleLinkedList
             }
         }
 
-        public void DeleteAt(int _index)
+        public void InsertAfter(Object _value, Object argNode)
         {
-            if(_index > index)
+            Node node = new Node(_value);
+            Node getNode = GetNode(argNode);
+            Node after = getNode.next;
+
+            getNode.next = node;
+            getNode.next.next = after;
+        }
+
+
+        public Node GetNode(Object argData)
+        {
+            Node current = head;
+
+            while (!current.data.Equals(argData))
+            {
+                current = current.next;
+            }
+            return current;
+        }
+
+        public void DeleteNode(int _index)
+        {
+            if (_index > index)
             {
                 Console.WriteLine("this Object doesn't exist");
             }
@@ -116,12 +138,27 @@ namespace SingleLinkedList
         {
             Node last = head;
 
-            while(last.next != null)
+            while (last.next != null)
             {
                 last = last.next;
             }
 
             return last.data;
+        }
+
+        public int Count()
+        {
+            Node current = head;
+
+            int count = 1;
+
+            while (current.next != null)
+            {
+                current = current.next;
+                count++;
+            }
+
+            return count;
         }
     }   
 }
