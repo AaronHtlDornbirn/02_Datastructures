@@ -8,24 +8,7 @@ namespace SingleLinkedList
 {
     public class SingleLinkedList
     {
-        public Node head;
-        public int index = 0;
-
-        public void InsertFirst(Object _value)
-        {
-            if(head == null)
-            {
-                head = new Node(_value);
-                index++;
-            }
-            else
-            {
-                Node node = new Node(_value);
-                node.next = head;
-                head = node;
-                index++;
-            }
-        }
+        private Node head;
 
         public void printAllNodes()
         {
@@ -33,20 +16,24 @@ namespace SingleLinkedList
             String printString = "";
             while (current != null)
             {
-                printString += current.data + "\n";
+                printString += current.Data + "\n";
                 current = current.next;
             }
             Console.WriteLine(printString);
         }
 
-        public void InsertLast(Object _value)
+        public void InsertFirst(object data)
         {
-            Node node = new Node(_value);
+            head = new Node(data, head);
+        }
+
+        public void InsertLast(object data)
+        {
+            Node node = new Node(data, null);
 
             if (head == null)
-            { 
+            {
                 head = node;
-                index++;
             }
             else
             {
@@ -57,71 +44,76 @@ namespace SingleLinkedList
                     current = current.next;
                 }
                 current.next = node;
-                index++;
             }
         }
 
-        public void DeleteAt(int _index)
+        public void InsertAfter(object data, int position)
         {
-            if(_index > index)
+            if (position == 0)
             {
-                Console.WriteLine("this Object doesn't exist");
+                InsertFirst(data);
+                return;
             }
-            else
+            int count = 0;
+            Node current = head;
+            while (count < position - 1)
             {
-                Node previous = head;
-                Node _next;
 
-                for (int i = 0; i < _index; i++)
+                if (current.next == null)
                 {
-                    previous = previous.next;
+                    Console.WriteLine(count + " doesn't exist");
+                    return;
                 }
-                _next = previous.next.next;
-                previous.next = _next;
-
+                current = current.next;
+                count++;
             }
+            Node node = new Node(data, current?.next);
+            current.next = node;
         }
 
-        public void InsertAt(Object _value, int _index)
+        public Node GetNode(object data)
         {
-            if (_index > index)
-            {
-                Console.WriteLine("this Object doesn't exist");
-            }
-            else
-            {
-                Node previous = head;
-                Node _next;
+            Node current = head;
 
-                for (int i = 0; i < _index; i++)
+            while (!current.Data.Equals(data))
+            {
+                if (current.next == null)
                 {
-                    previous = previous.next;
+                    return null;
                 }
-
-                Node newNode = new Node(_value);
-                _next = previous.next;
-                previous.next = newNode;
-                newNode.next = _next;
-
-                index++;
+                current = current.next;
             }
+            return current;
         }
 
-        public object First()
+        public bool DeleteNode(object argData)
         {
-            return head.data;
-        }
-
-        public object Last()
-        {
-            Node last = head;
-
-            while(last.next != null)
+            Node current = head;
+            Node previous = head;
+            while (!current.Data.Equals(argData))
             {
-                last = last.next;
+                if (current.next == null)
+                {
+                    return false;
+                }
+                previous = current;
+                current = current.next;
             }
-
-            return last.data;
+            previous.next = current.next ?? null;
+            return true;
         }
-    }   
+
+        public int Count()
+        {
+            Node node = head;
+
+            int count = 0;
+            while (node != null)
+            {
+                count++;
+                node = node.next;
+            }
+            return count;
+        }
+    }
 }
