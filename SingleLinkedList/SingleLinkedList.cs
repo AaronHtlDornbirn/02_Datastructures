@@ -115,5 +115,32 @@ namespace SingleLinkedList
             }
             return count;
         }
+
+        public Node SwitchNodes(Node firstNode, Node secondNode)
+        {
+            if (firstNode == secondNode)
+                return;
+
+            Node previousfirst = null, currentfirst = head;
+            while (currentfirst != null && currentfirst.Data != firstNode)
+            {
+                previousfirst = currentfirst;
+                currentfirst = currentfirst.next;
+            }
+
+            Node previoussecond = null, currentsecond = head;
+            while (currentsecond != null && currentsecond.Data != secondNode)
+            {
+                previoussecond = currentsecond;
+                currentsecond = currentsecond.next;
+            }
+
+            if (currentfirst == null || currentsecond == null)
+                return;
+
+            Node node = currentfirst.next;
+            currentfirst.next = currentsecond.next;
+            currentsecond.next = node;
+        }
     }
 }

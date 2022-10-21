@@ -13,7 +13,7 @@ class Programm
         singleLinkedList.DeleteNode(0);
         singleLinkedList.printAllNodes();
 
-        Console.WriteLine(singleLinkedList.GetNode(4).Data);
+        Console.WriteLine(singleLinkedList.GetNode(3).Data);
         Console.WriteLine(singleLinkedList.Count());
     }
 }

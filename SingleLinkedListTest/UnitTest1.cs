@@ -10,89 +10,52 @@ namespace SingleLinkedListTest
         public void Setup() { }
 
         [Test]
-        public void IsertFirst_NotEmptyList_ElementAddedAtFirstPosOfList()
+        public void SwitchNodes_values_switched()
         {
             SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst("first");
-            list.InsertFirst("second");
-            var node = list.GetNode("second");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            Assert.AreEqual("second", node.Data);
-            Assert.AreEqual(node.next.Data, "first");
+            list.InsertFirst(1);
+            list.InsertLast(2);
+            list.InsertLast(3);
+            list.InsertLast(4);
+            
+            var node1 = list.GetNode(2);
+            var node2 = list.GetNode(3);           
+            list.SwitchNodes(node1, node2);
+
+            Assert.AreEqual(2, node2.Data);
+            Assert.AreEqual(3, node1.Data);
         }
 
         [Test]
-        public void IsertFirst_EmptyList_OnlyThisElementInList()
+        public void SwitchNodes_firstNodeDoesNotExist()
         {
             SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst("first");
-            var node = list.GetNode("first");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            Assert.AreEqual("first", node.Data);
-            Assert.AreEqual(node.next, null);
+            list.InsertFirst(1);
+            list.InsertLast(2);
+            list.InsertLast(3);
+            list.InsertLast(4);
+            
+            var node1 = list.GetNode(2);
+            var node2 = list.GetNode(3);
+            node1 = null;
+
+            Assert.AreEqual(null, list.SwitchNodes(node1, node2));
         }
 
         [Test]
-        public void IsertLast_NotEmptyList_ElementAddedAtLastPosOfList()
+        public void SwitchNodes_secondNodeDoesNotExist()
         {
             SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertLast("first");
-            list.InsertLast("second");
-            var node = list.GetNode("second");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            Assert.AreEqual("second", node.Data);
-            Assert.AreEqual(node.next, null);
-        }
+            list.InsertFirst(1);
+            list.InsertLast(2);
+            list.InsertLast(3);
+            list.InsertLast(4);
 
-        [Test]
-        public void IsertLast_EmptyList_OnlyThisElementInList()
-        {
-            SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst("first");
-            var node = list.GetNode("first");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            Assert.AreEqual("first", node.Data);
-            Assert.AreEqual(node.next, null);
-        }
+            var node1 = list.GetNode(2);
+            var node2 = list.GetNode(3);
+            node2 = null;
 
-        [Test]
-        public void IsertAt_NotEmptyList_ElementAddedAtLastPosOfList()
-        {
-            SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertLast("first");
-            list.InsertLast("second");
-            list.InsertAfter("middle", 1);
-            var node = list.GetNode("middle");
-            // muss ersten node sein -> next.data == "first"
-            Assert.IsNotNull(node);
-            // next node should be "second"
-            Assert.AreEqual("middle", node.Data);
-            Assert.AreNotEqual(node.next, null);
-            Assert.AreEqual(node.next.Data, "second");
-        }
-
-        [Test]
-        public void DeleteNode_NoEmptyList_DeleteElement()
-        {
-            SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertLast("first");
-            list.InsertLast("second");
-            list.DeleteNode(1);
-        }
-
-        [Test]
-        public void GetNode_NodeExists_ReturnsNode()
-        {
-            SingleLinkedList.SingleLinkedList list = new SingleLinkedList.SingleLinkedList();
-            list.InsertFirst("first");
-            list.InsertFirst("second");
-            var node = list.GetNode("first");
-            Assert.AreEqual("first", node.Data);
-
+            Assert.AreEqual(null, list.SwitchNodes(node1, node2));
         }
     }
 }
