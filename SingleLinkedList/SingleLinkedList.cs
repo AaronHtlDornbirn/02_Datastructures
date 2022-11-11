@@ -40,11 +40,6 @@ namespace SingleLinkedList
             return count;
         }
 
-        public object first()
-        {
-            return head.Data;
-        }
-
         public void InsertionSort()
         {
             Node currentNode = head.next;
