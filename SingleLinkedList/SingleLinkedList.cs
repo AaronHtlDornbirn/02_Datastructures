@@ -27,82 +27,6 @@ namespace SingleLinkedList
             head = new Node(data, head);
         }
 
-        public void InsertLast(object data)
-        {
-            Node node = new Node(data, null);
-
-            if (head == null)
-            {
-                head = node;
-            }
-            else
-            {
-                Node current = head;
-
-                while (current.next != null)
-                {
-                    current = current.next;
-                }
-                current.next = node;
-            }
-        }
-
-        public void InsertAfter(object data, int position)
-        {
-            if (position == 0)
-            {
-                InsertFirst(data);
-                return;
-            }
-            int count = 0;
-            Node current = head;
-            while (count < position - 1)
-            {
-
-                if (current.next == null)
-                {
-                    Console.WriteLine(count + " doesn't exist");
-                    return;
-                }
-                current = current.next;
-                count++;
-            }
-            Node node = new Node(data, current?.next);
-            current.next = node;
-        }
-
-        public Node GetNode(object data)
-        {
-            Node current = head;
-
-            while (!current.Data.Equals(data))
-            {
-                if (current.next == null)
-                {
-                    return null;
-                }
-                current = current.next;
-            }
-            return current;
-        }
-
-        public bool DeleteNode(object argData)
-        {
-            Node current = head;
-            Node previous = head;
-            while (!current.Data.Equals(argData))
-            {
-                if (current.next == null)
-                {
-                    return false;
-                }
-                previous = current;
-                current = current.next;
-            }
-            previous.next = current.next ?? null;
-            return true;
-        }
-
         public int Count()
         {
             Node node = head;
@@ -116,31 +40,43 @@ namespace SingleLinkedList
             return count;
         }
 
-        public Node SwitchNodes(Node firstNode, Node secondNode)
+        public object first()
         {
-            if (firstNode == secondNode)
-                return;
+            return head.Data;
+        }
 
-            Node previousfirst = null, currentfirst = head;
-            while (currentfirst != null && currentfirst.Data != firstNode)
+        public void InsertionSort()
+        {
+            Node currentNode = head.next;
+            while (currentNode != null)
             {
-                previousfirst = currentfirst;
-                currentfirst = currentfirst.next;
+                for (var current = head; current != null; current = current.next)
+                {
+                    if (current == currentNode)
+                        break;
+                    if ((int)current.Data < (int)currentNode.Data)
+                        continue;
+                    (current.Data, currentNode.Data) = (currentNode.Data, current.Data);
+                }
+                currentNode = currentNode.next;
             }
+        }
 
-            Node previoussecond = null, currentsecond = head;
-            while (currentsecond != null && currentsecond.Data != secondNode)
+        public void InsertionSortInverse()
+        {
+            Node currentNode = head.next;
+            while (currentNode != null)
             {
-                previoussecond = currentsecond;
-                currentsecond = currentsecond.next;
+                for (var current = head; current != null; current = current.next)
+                {
+                    if (current == currentNode)
+                        break;
+                    if ((int)current.Data > (int)currentNode.Data)
+                        continue;
+                    (current.Data, currentNode.Data) = (currentNode.Data, current.Data);
+                }
+                currentNode = currentNode.next;
             }
-
-            if (currentfirst == null || currentsecond == null)
-                return;
-
-            Node node = currentfirst.next;
-            currentfirst.next = currentsecond.next;
-            currentsecond.next = node;
         }
     }
 }

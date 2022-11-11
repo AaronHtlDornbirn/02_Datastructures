@@ -5,15 +5,14 @@ class Programm
     static void Main(string[] args)
     {
         SingleLinkedList.SingleLinkedList singleLinkedList = new SingleLinkedList.SingleLinkedList();
-
-        singleLinkedList.InsertFirst(1);
-        singleLinkedList.InsertLast(2);
-        singleLinkedList.InsertLast(3);
-        singleLinkedList.InsertLast(4);
-        singleLinkedList.DeleteNode(0);
+        
+        singleLinkedList.InsertFirst(22);
+        singleLinkedList.InsertFirst(44);
+        singleLinkedList.InsertFirst(11);
+        singleLinkedList.InsertFirst(55);
+        singleLinkedList.InsertFirst(33);
+        
         singleLinkedList.printAllNodes();
-
-        Console.WriteLine(singleLinkedList.GetNode(3).Data);
         Console.WriteLine(singleLinkedList.Count());
     }
 }
