@@ -8,7 +8,7 @@ namespace SingleLinkedList
 {
     public class SingleLinkedList
     {
-        private Node head;
+        public Node head;
 
         public void printAllNodes()
         {
