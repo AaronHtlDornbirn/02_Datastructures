@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Common;
+
 namespace SingleLinkedList
 {
-    public class SingleLinkedList
+    public class SingleLinkedList : IMyList
     {
         public Node head;
+        private SortStrategy sortStrategy;
 
         public void printAllNodes()
         {
@@ -25,6 +28,11 @@ namespace SingleLinkedList
         public void InsertFirst(object data)
         {
             head = new Node(data, head);
+        }
+
+        public Node First()
+        {
+            return head;
         }
 
         public int Count()
@@ -72,6 +80,31 @@ namespace SingleLinkedList
                 }
                 currentNode = currentNode.next;
             }
+        }
+        public void SetSortStrategy(SortStrategy _sortStrategy)
+        {
+            sortStrategy = _sortStrategy;
+        }
+
+        public void Sort()
+        {
+            sortStrategy.Sort(this);
+        }
+
+        public override string ToString()
+        {
+            string retval = "";
+            if (head == null)
+                return "No elements in List";
+
+            var node = head;
+            while (node != null)
+            {
+                retval += "| " + node.Data + " ";
+                node = node.next;
+            }
+            retval += "|";
+            return retval;
         }
     }
 }
