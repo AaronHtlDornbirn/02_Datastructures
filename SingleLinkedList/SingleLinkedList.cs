@@ -49,7 +49,6 @@ namespace SingleLinkedList
             if (head == null)
             {
                 head = node;
-                index++;
             }
             else
             {
@@ -60,45 +59,42 @@ namespace SingleLinkedList
                     current = current.next;
                 }
                 current.next = node;
-                index++;
             }
         }
 
-        public void DeleteAt(int _index)
+        public void InsertAfter(object data, int position)
         {
             if (_index > index)
             {
-                Console.WriteLine("this Object doesn't exist");
+                InsertFirst(data);
+                return;
             }
-            else
+            int count = 0;
+            Node current = head;
+            while (count < position - 1)
             {
-                Node previous = head;
-                Node _next;
 
-                for (int i = 0; i < _index; i++)
+                if (current.next == null)
                 {
-                    previous = previous.next;
+                    Console.WriteLine(count + " doesn't exist");
+                    return;
                 }
-                _next = previous.next.next;
-                previous.next = _next;
-
+                current = current.next;
+                count++;
             }
+            Node node = new Node(data, current?.next);
+            current.next = node;
         }
 
         public void InsertAt(Object data, int _index)
         {
-            if (_index > index)
-            {
-                Console.WriteLine("this Object doesn't exist");
-            }
-            else
-            {
-                Node previous = head;
-                Node _next;
+            Node current = head;
 
-                for (int i = 0; i < _index; i++)
+            while (!current.Data.Equals(data))
+            {
+                if (current.next == null)
                 {
-                    previous = previous.next;
+                    return null;
                 }
                 Node newNode = new Node(data, null);
                 _next = previous.next;
@@ -106,6 +102,7 @@ namespace SingleLinkedList
                 newNode.next = _next;
                 index++;
             }
+            return current;
         }
 
         public Node First()
@@ -115,11 +112,12 @@ namespace SingleLinkedList
 
         public Node Last()
         {
-            Node last = head;
+        Node node = head;
 
             while (last.next != null)
             {
-                last = last.next;
+                count++;
+                node = node.next;
             }
             return last;
         }
