@@ -1,4 +1,4 @@
-﻿using SingleLinkedList;
+﻿using Common;
 
 class Programm
 {
@@ -6,14 +6,18 @@ class Programm
     {
         SingleLinkedList.SingleLinkedList singleLinkedList = new SingleLinkedList.SingleLinkedList();
 
-        singleLinkedList.InsertFirst(1);
-        singleLinkedList.InsertLast(2);
-        singleLinkedList.InsertLast(3);
-        singleLinkedList.InsertLast(4);
-        singleLinkedList.DeleteNode(0);
-        singleLinkedList.printAllNodes();
+        singleLinkedList.InsertFirst(22);
+        singleLinkedList.InsertFirst(44);
+        singleLinkedList.InsertFirst(11);
+        singleLinkedList.InsertFirst(55);
+        singleLinkedList.InsertFirst(33);
 
-        Console.WriteLine(singleLinkedList.GetNode(4).Data);
+        singleLinkedList.printAllNodes();
+        Console.WriteLine(singleLinkedList.ToString());
         Console.WriteLine(singleLinkedList.Count());
+
+        singleLinkedList.SetSortStrategy(new BubbleSort());
+        singleLinkedList.Sort();
+        Console.WriteLine(singleLinkedList.ToString());
     }
 }

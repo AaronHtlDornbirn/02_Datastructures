@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Common;
+
 namespace SingleLinkedList
 {
-    public class SingleLinkedList
+    public class SingleLinkedList : IMyList
     {
-        private Node head;
+        public Node head;
+        public int index = 0;
+        private SortStrategy sortStrategy;
 
         public void printAllNodes()
         {
@@ -22,18 +26,30 @@ namespace SingleLinkedList
             Console.WriteLine(printString);
         }
 
-        public void InsertFirst(object data)
+        public void InsertFirst(Object data)
         {
-            head = new Node(data, head);
+            if (head == null)
+            {
+                head = new Node(data, null);
+                index++;
+            }
+            else
+            {
+                Node node = new Node(data, null);
+                node.next = head;
+                head = node;
+                index++;
+            }
         }
 
-        public void InsertLast(object data)
+        public void InsertLast(Object data)
         {
             Node node = new Node(data, null);
 
             if (head == null)
             {
                 head = node;
+                index++;
             }
             else
             {
@@ -44,63 +60,68 @@ namespace SingleLinkedList
                     current = current.next;
                 }
                 current.next = node;
+                index++;
             }
         }
 
-        public void InsertAfter(object data, int position)
+        public void DeleteAt(int _index)
         {
-            if (position == 0)
+            if (_index > index)
             {
-                InsertFirst(data);
-                return;
+                Console.WriteLine("this Object doesn't exist");
             }
-            int count = 0;
-            Node current = head;
-            while (count < position - 1)
+            else
             {
+                Node previous = head;
+                Node _next;
 
-                if (current.next == null)
+                for (int i = 0; i < _index; i++)
                 {
-                    Console.WriteLine(count + " doesn't exist");
-                    return;
+                    previous = previous.next;
                 }
-                current = current.next;
-                count++;
+                _next = previous.next.next;
+                previous.next = _next;
+
             }
-            Node node = new Node(data, current?.next);
-            current.next = node;
         }
 
-        public Node GetNode(object data)
+        public void InsertAt(Object data, int _index)
         {
-            Node current = head;
-
-            while (!current.Data.Equals(data))
+            if (_index > index)
             {
-                if (current.next == null)
-                {
-                    return null;
-                }
-                current = current.next;
+                Console.WriteLine("this Object doesn't exist");
             }
-            return current;
+            else
+            {
+                Node previous = head;
+                Node _next;
+
+                for (int i = 0; i < _index; i++)
+                {
+                    previous = previous.next;
+                }
+                Node newNode = new Node(data, null);
+                _next = previous.next;
+                previous.next = newNode;
+                newNode.next = _next;
+                index++;
+            }
         }
 
-        public bool DeleteNode(object argData)
+        public Node First()
         {
-            Node current = head;
-            Node previous = head;
-            while (!current.Data.Equals(argData))
+            return head;
+        }
+
+        public Node Last()
+        {
+            Node last = head;
+
+            while (last.next != null)
             {
-                if (current.next == null)
-                {
-                    return false;
-                }
-                previous = current;
-                current = current.next;
+                last = last.next;
             }
-            previous.next = current.next ?? null;
-            return true;
+            return last;
         }
 
         public int Count()
@@ -114,6 +135,156 @@ namespace SingleLinkedList
                 node = node.next;
             }
             return count;
+        }
+        public Node GetElement(Object element)
+        {
+            Node current = head;
+
+            while (!current.Data.Equals(element))
+            {
+                if (current.next == null)
+                {
+                    Node node = new Node(element, null);
+                    return node;
+                }
+
+                current = current.next;
+            }
+            return current;
+        }
+
+        public void InsertAfter(Object before, Object value)
+        {
+            Node node = new Node(value, null);
+            Node getElement = GetElement(before);
+            Node after = getElement.next;
+
+            getElement.next = node;
+            getElement.next.next = after;
+        }
+        public bool DeleteNode(Node node)
+        {
+            Node current = head;
+            Node next;
+            int index = 0;
+
+            while (!current.Data.Equals(node.Data))
+            {
+                if (current.next == null)
+                {
+                    return false;
+                }
+                current = current.next;
+            }
+
+            index++;
+            DeleteAt(index);
+
+            return true;
+        }
+
+        public bool Exists(Node node)
+        {
+            Node currentNode = head;
+            if (currentNode == node) return true;
+            while (currentNode != node)
+            {
+
+                if (currentNode.next == node)
+                {
+                    return true;
+                }
+                currentNode = currentNode.next;
+            }
+            return false;
+        }
+
+        public void SwitchNodes(Node node1, Node node2)
+        {
+            if (!Exists(node1) || !Exists(node2)) return;
+
+            (node1.Data, node2.Data) = (node2.Data, node1.Data);
+        }
+
+        public void RandomSort() //wrong
+        {
+            Node current = head;
+            int node1 = int.Parse(string.Format("{0}", current.Data));
+            int node2 = int.Parse(string.Format("{0}", current.next.Data));
+
+            while (current != null)
+            {
+                if (current.next == null) return;
+                if (node1 > node2)
+                {
+                    current.Data = node2;
+                    current.next.Data = node1;
+                    current = head;
+                }
+                current = current.next;
+                if (current.next == null) return;
+                node1 = int.Parse(string.Format("{0}", current.Data));
+                node2 = int.Parse(string.Format("{0}", current.next.Data));
+            }
+        }
+
+        public void InsertionSort()
+        {
+            Node currentNode = head.next;
+            while (currentNode != null)
+            {
+                for (var current = head; current != null; current = current.next)
+                {
+                    if (current == currentNode)
+                        break;
+                    if ((int)current.Data < (int)currentNode.Data)
+                        continue;
+                    (current.Data, currentNode.Data) = (currentNode.Data, current.Data);
+                }
+                currentNode = currentNode.next;
+            }
+        }
+
+        public void InsertionSortInverse()
+        {
+            Node currentNode = head.next;
+            while (currentNode != null)
+            {
+                for (var current = head; current != null; current = current.next)
+                {
+                    if (current == currentNode)
+                        break;
+                    if ((int)current.Data > (int)currentNode.Data)
+                        continue;
+                    (current.Data, currentNode.Data) = (currentNode.Data, current.Data);
+                }
+                currentNode = currentNode.next;
+            }
+        }
+        public void SetSortStrategy(SortStrategy _sortStrategy)
+        {
+            sortStrategy = _sortStrategy;
+        }
+
+        public void Sort()
+        {
+            sortStrategy.Sort(this);
+        }
+
+        public override string ToString()
+        {
+            string retval = "";
+            if (head == null)
+                return "No elements in List";
+
+            var node = head;
+            while (node != null)
+            {
+                retval += "| " + node.Data + " ";
+                node = node.next;
+            }
+            retval += "|";
+            return retval;
         }
     }
 }
