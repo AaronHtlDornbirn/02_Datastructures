@@ -62,39 +62,41 @@ namespace SingleLinkedList
             }
         }
 
-        public void InsertAfter(object data, int position)
+        public void DeleteAt(int _index)
         {
             if (_index > index)
             {
-                InsertFirst(data);
-                return;
+                Console.WriteLine("this Object doesn't exist");
             }
-            int count = 0;
-            Node current = head;
-            while (count < position - 1)
+            else
             {
+                Node previous = head;
+                Node _next;
 
-                if (current.next == null)
+                for (int i = 0; i < _index; i++)
                 {
-                    Console.WriteLine(count + " doesn't exist");
-                    return;
+                    previous = previous.next;
                 }
-                current = current.next;
-                count++;
+                _next = previous.next.next;
+                previous.next = _next;
+
             }
-            Node node = new Node(data, current?.next);
-            current.next = node;
         }
 
         public void InsertAt(Object data, int _index)
         {
-            Node current = head;
-
-            while (!current.Data.Equals(data))
+            if (_index > index)
             {
-                if (current.next == null)
+                Console.WriteLine("this Object doesn't exist");
+            }
+            else
+            {
+                Node previous = head;
+                Node _next;
+
+                for (int i = 0; i < _index; i++)
                 {
-                    return null;
+                    previous = previous.next;
                 }
                 Node newNode = new Node(data, null);
                 _next = previous.next;
@@ -102,7 +104,6 @@ namespace SingleLinkedList
                 newNode.next = _next;
                 index++;
             }
-            return current;
         }
 
         public Node First()
@@ -112,12 +113,11 @@ namespace SingleLinkedList
 
         public Node Last()
         {
-        Node node = head;
+            Node last = head;
 
             while (last.next != null)
             {
-                count++;
-                node = node.next;
+                last = last.next;
             }
             return last;
         }
@@ -283,6 +283,11 @@ namespace SingleLinkedList
             }
             retval += "|";
             return retval;
+        }
+
+        public void SortDesc()
+        {
+            sortStrategy.SortDesc(this);
         }
     }
 }

@@ -26,5 +26,15 @@ namespace Common
             }
             Console.WriteLine("InsertionSortInverse");
         }
+
+        public void SortDesc()
+        {
+
+        }
+
+        public override void SortDesc(IMyList list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

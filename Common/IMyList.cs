@@ -11,10 +11,6 @@ namespace Common
         void SetSortStrategy(SortStrategy sortStrategy);
         Node First();
         void Sort();
-    }
-
-    public abstract class SortStrategy
-    {
-        public abstract void Sort(IMyList list);
+        void SortDesc();
     }
 }
