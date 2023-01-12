@@ -8,7 +8,6 @@ namespace Common
 {
     public class BubbleSort : SortStrategy
     {
-
         public override void Sort(IMyList list)
         {
             bool sorted = false;
