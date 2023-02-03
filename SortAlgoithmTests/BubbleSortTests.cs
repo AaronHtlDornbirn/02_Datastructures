@@ -20,7 +20,7 @@ namespace SortAlgorithmTests
             linkedlist.InsertFirst(44);
             linkedlist.InsertFirst(11);
 
-            linkedlist.SetSortStrategy(new BubbleSort());
+            linkedlist.SetSortStrategy(SortFactory.StrategyGenerator("BubbleSort"));
             linkedlist.Sort();
 
             Assert.AreEqual(linkedlist.head.Data, 11);
@@ -40,7 +40,7 @@ namespace SortAlgorithmTests
             linkedlist.InsertFirst(44);
             linkedlist.InsertFirst(11);
 
-            linkedlist.SetSortStrategy(new BubbleSort());
+            linkedlist.SetSortStrategy(SortFactory.StrategyGenerator("BubbleSort"));
             linkedlist.SortDesc();
 
             Assert.AreEqual(linkedlist.head.Data, 55);

@@ -26,15 +26,23 @@ namespace Common
             }
             Console.WriteLine("InsertionSort");
         }
-
-        public void SortDesc()
-        {
-
-        }
-
         public override void SortDesc(IMyList list)
         {
-            throw new NotImplementedException();
+            var nextNode = list.First().next;
+
+            while (nextNode != null)
+            {
+                for (var current = list.First(); current.next != null; current = current.next)
+                {
+                    if (current == nextNode)
+                        break;
+                    if ((int)current.Data > (int)nextNode.Data)
+                        continue;
+                    (current.Data, nextNode.Data) = (nextNode.Data, current.Data);
+                }
+                nextNode = nextNode.next;
+            }
+            Console.WriteLine("InsertionSortDesc");
         }
     }
 }
