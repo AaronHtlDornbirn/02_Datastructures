@@ -40,7 +40,7 @@ namespace SortAlgorithmTests
             linkedlist.InsertFirst(44);
             linkedlist.InsertFirst(11);
 
-            linkedlist.SetSortStrategy(SortFactory.StrategyGenerator("InsertionSort")));
+            linkedlist.SetSortStrategy(SortFactory.StrategyGenerator("InsertionSort"));
             linkedlist.SortDesc();
 
             Assert.AreEqual(linkedlist.head.Data, 55);

@@ -13,17 +13,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericClass", "GenericClas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortAlgoithmTests", "SortAlgoithmTests\SortAlgoithmTests.csproj", "{FB4BD7D9-6763-4C62-A28A-458F7137CE39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stack", "Stack\Stack.csproj", "{47767F4F-CE42-4ED7-834E-28190EC01480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stack", "Stack\Stack.csproj", "{47767F4F-CE42-4ED7-834E-28190EC01480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackTests", "StackTests\StackTests.csproj", "{AB9A6715-82E1-4AC0-8B15-DBF6B6114F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StackTests", "StackTests\StackTests.csproj", "{AB9A6715-82E1-4AC0-8B15-DBF6B6114F8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue", "Queue\Queue.csproj", "{6631F905-ACAD-4142-BDC3-AFBF6C48637F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue", "Queue\Queue.csproj", "{6631F905-ACAD-4142-BDC3-AFBF6C48637F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueTests", "QueueTests\QueueTests.csproj", "{128B979C-F52D-4209-BB9D-7FE82AAAF112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueTests", "QueueTests\QueueTests.csproj", "{128B979C-F52D-4209-BB9D-7FE82AAAF112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatastructureTests", "DatastructureTests\DatastructureTests.csproj", "{E1C6BF6B-53E8-41BC-9325-1E5A5089159D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatastructureTests", "DatastructureTests\DatastructureTests.csproj", "{E1C6BF6B-53E8-41BC-9325-1E5A5089159D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverTests", "ObserverTests\ObserverTests.csproj", "{7772DB47-C9E8-4740-9ACB-A6A2B3999501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObserverTests", "ObserverTests\ObserverTests.csproj", "{7772DB47-C9E8-4740-9ACB-A6A2B3999501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTree", "BinaryTree\BinaryTree.csproj", "{B93DE917-9EC5-4BC7-9210-90C736A4EA4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeTests", "BinaryTreeTests\BinaryTreeTests.csproj", "{31C50DFA-EDD8-4F61-A4D0-62C7AEE5499A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{7772DB47-C9E8-4740-9ACB-A6A2B3999501}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7772DB47-C9E8-4740-9ACB-A6A2B3999501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7772DB47-C9E8-4740-9ACB-A6A2B3999501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93DE917-9EC5-4BC7-9210-90C736A4EA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93DE917-9EC5-4BC7-9210-90C736A4EA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93DE917-9EC5-4BC7-9210-90C736A4EA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93DE917-9EC5-4BC7-9210-90C736A4EA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C50DFA-EDD8-4F61-A4D0-62C7AEE5499A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C50DFA-EDD8-4F61-A4D0-62C7AEE5499A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C50DFA-EDD8-4F61-A4D0-62C7AEE5499A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C50DFA-EDD8-4F61-A4D0-62C7AEE5499A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
